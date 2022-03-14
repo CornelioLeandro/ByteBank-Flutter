@@ -27,7 +27,7 @@ class FormularioTransferencia extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text("AppCouro")),
         body: Column(
-          children: <Widet>[
+          children: <Widget>[
             Editor(
                 controlador: _controladorCampoNumeroConta,
                 dica: '000',
@@ -85,25 +85,32 @@ class Editor extends StatelessWidget {
   }
 }
 
-class ListaTransferencias extends StatelessWidget {
+class ListaTransferencias extends StatefulWidget {
+
+  final List<Transferencia> _transferencias = List.empty(growable: true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("App Couro"),
       ),
-      body: Column(children: <Widget>[
-        ItemTransferencia(Transferencia(200.0, 101)),
-        ItemTransferencia(Transferencia(1000.0, 201)),
-        ItemTransferencia(Transferencia(500.0, 301)),
-      ]),
+      body: ListView.builder(
+      itemCount: _transferencias.length,
+      itemBuilder: (context, int index) {
+        final transferencia = _transferencias[index];
+        return ItemTransferencia(transferencia);
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           final Future future =
               Navigator.push(context, MaterialPageRoute(builder: (context) {
             return FormularioTransferencia();
           }));
-          future.then((transferenciaRecebida) {});
+          future.then((transferenciaRecebida) {
+            _transferencias.add(transferenciaRecebida);
+          });
         },
         child: const Icon(Icons.add),
       ),
