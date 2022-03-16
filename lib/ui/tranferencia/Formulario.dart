@@ -26,7 +26,7 @@ class FormularioTransferenciaState extends State<FormularioTransferencia> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scffold(
       appBar: AppBar(
           title: const Text(_tituloAppBar)),
       body: SingleChildScrollView(
