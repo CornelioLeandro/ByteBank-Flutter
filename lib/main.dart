@@ -1,6 +1,7 @@
 import 'dart:ffi';
-
-import 'package:bytebank/ui/tranferencia/Lista.dart';
+import 'package:bytebank/ui/screens_contact/contact_form.dart';
+import 'package:bytebank/ui/screens_contact/contacts.dart';
+import 'package:bytebank/ui/screens_contact/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,6 +9,8 @@ void main() {
 }
 
 class BytebankApp extends StatelessWidget {
+  const BytebankApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +22,8 @@ class BytebankApp extends StatelessWidget {
         ),
         textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.purple)),
       ),
-      home: ListaTransferencias(),
+      home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
